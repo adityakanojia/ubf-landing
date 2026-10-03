@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#2563EB">
+<title>United Beings Foundation — Youth-Led. Impact-First.</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#2563EB;--blue-h:#1D4ED8;--blue-s:#EFF6FF;--blue-m:#DBEAFE;
+  --blue-b:#BFDBFE;--blue-mu:#93C5FD;
+  --ink:#0F172A;--body:#475569;--muted:#94A3B8;
+  --border:#E2E8F0;--border2:#CBD5E1;
+  --bg:#FFFFFF;--bg2:#F8FAFC;--bg3:#F1F5F9;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;cursor:none}
+#c1{position:fixed;width:8px;height:8px;background:var(--blue);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s}
+#c2{position:fixed;width:30px;height:30px;border:1.5px solid rgba(37,99,235,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)}
+body:has(a:hover) #c1,body:has(button:hover) #c1{width:14px;height:14px}
+body:has(a:hover) #c2,body:has(button:hover) #c2{width:44px;height:44px;border-color:rgba(37,99,235,.15)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);height:60px;display:flex;align-items:center;padding:0 28px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
+.nav-mark{width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#fff;flex-shrink:0}
+.nav-nm{font-size:14px;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+.nav-links{display:flex;gap:2px;margin-right:12px}
+.nav-links a{font-size:13px;font-weight:500;color:var(--body);text-decoration:none;padding:6px 12px;border-radius:7px;transition:all .2s}
+.nav-links a:hover{color:var(--ink);background:var(--bg3)}
+.nav-cta{font-size:13px;font-weight:700;color:#fff;background:var(--blue);border:none;border-radius:8px;padding:8px 18px;cursor:none;text-decoration:none;transition:background .2s,transform .15s;white-space:nowrap;-webkit-appearance:none}
+.nav-cta:hover{background:var(--blue-h);transform:scale(1.02)}
+.nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;cursor:pointer;padding:8px;border:none;background:none;margin-left:8px;flex-shrink:0}
+.nav-burger span{display:block;height:2px;background:var(--ink);border-radius:2px;transition:all .3s;transform-origin:center}
+.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-drawer{position:fixed;top:60px;left:0;right:0;z-index:199;background:white;border-bottom:1px solid var(--border);max-height:0;overflow:hidden;transition:max-height .35s ease;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.nav-drawer.open{max-height:400px}
+.nav-drawer-inner{padding:12px 20px 20px;display:flex;flex-direction:column;gap:4px}
+.nav-drawer a{font-size:15px;font-weight:600;color:var(--body);text-decoration:none;padding:12px 14px;border-radius:10px;transition:all .2s;display:block}
+.nav-drawer a:hover,.nav-drawer a:active{color:var(--blue);background:var(--blue-s)}
+.nav-drawer-cta{margin-top:8px;background:var(--blue);color:white !important;text-align:center;border-radius:10px}
+
+/* HERO */
+#hero{min-height:100svh;padding-top:60px;background:var(--bg);display:flex;flex-direction:column}
+.hl{flex:1;display:flex;flex-direction:column;justify-content:center;padding:48px 24px 40px}
+.hbadge{display:inline-flex;align-items:center;gap:8px;background:var(--blue-s);border:1px solid var(--blue-b);border-radius:100px;padding:6px 14px;font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px;width:fit-content}
+.bdot{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:blink 2s ease-in-out infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hh1{font-family:'Playfair Display',serif;font-size:clamp(36px,9vw,72px);font-weight:700;line-height:1.05;letter-spacing:-.02em;color:var(--ink);margin-bottom:18px}
+.hh1 .bl{font-style:italic;color:var(--blue)}.hh1 .fd{color:var(--muted)}
+.hp{font-size:16px;line-height:1.75;color:var(--body);max-width:500px;margin-bottom:32px;font-weight:300}
+.hbtns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px}
+.btn-p{font-size:14px;font-weight:700;color:#fff;background:var(--blue);border:none;border-radius:10px;padding:13px 22px;cursor:none;text-decoration:none;transition:background .2s,transform .15s;display:inline-flex;align-items:center;gap:8px;-webkit-appearance:none;touch-action:manipulation;min-height:48px}
+.btn-p:hover{background:var(--blue-h);transform:translateY(-1px)}
+.btn-o{font-size:14px;font-weight:600;color:var(--ink);background:#fff;border:1.5px solid var(--border2);border-radius:10px;padding:12px 22px;cursor:none;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:8px;-webkit-appearance:none;touch-action:manipulation;min-height:48px}
+.btn-o:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-s)}
+.hstats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border2);border-radius:12px;overflow:hidden}
+.hs{display:flex;flex-direction:column;gap:3px;padding:14px 12px;border-right:1px solid var(--border)}
+.hs:last-child{border-right:none}
+.hsn{font-size:clamp(18px,4vw,24px);font-weight:800;color:var(--ink);letter-spacing:-.03em;line-height:1}
+.hsn span{color:var(--blue)}
+.hsl{font-size:10px;color:var(--muted);font-weight:500;line-height:1.4}
+.hero-cards-row{display:flex;gap:12px;overflow-x:auto;padding:0 24px 32px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.hero-cards-row::-webkit-scrollbar{display:none}
+.hcard{background:var(--bg2);border:1.5px solid var(--border);border-radius:14px;padding:20px 18px;flex-shrink:0;width:180px;transition:all .2s}
+.hcard:hover{border-color:var(--blue-b);transform:scale(1.02)}
+.hcard-icon{font-size:26px;margin-bottom:10px}
+.hcard-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:4px;line-height:1.3}
+.hcard-desc{font-size:11px;color:var(--body);line-height:1.5;margin-bottom:10px}
+.hcard-num{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--blue)}
+
+/* TICKER */
+.ticker{border-top:1px solid var(--border);border-bottom:1px solid var(--border);height:40px;overflow:hidden;background:var(--bg2);display:flex;align-items:center}
+.ttrack{display:flex;width:max-content;animation:roll 24s linear infinite}
+@keyframes roll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.titem{display:flex;align-items:center;gap:8px;padding:0 22px;height:40px;border-right:1px solid var(--border);font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.tdot{width:4px;height:4px;background:var(--blue);border-radius:50%;flex-shrink:0}
+
+/* SECTION UTILS */
+section{padding:80px 24px}
+.eye{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.eline{width:18px;height:1.5px;background:var(--blue);flex-shrink:0}
+.sh{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,46px);font-weight:700;line-height:1.15;letter-spacing:-.02em;color:var(--ink)}
+.sh em{font-style:italic;color:var(--blue)}
+.sub{font-size:15px;line-height:1.75;color:var(--body)}
+
+/* ABOUT */
+#about{background:var(--bg2);padding:0;border-top:1px solid var(--border)}
+.abl{padding:64px 24px;border-bottom:1px solid var(--border)}
+.abr{padding:32px 24px;display:flex;flex-direction:column;gap:16px}
+.abchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.achip{font-size:12px;font-weight:600;background:#fff;border:1.5px solid var(--border2);border-radius:20px;padding:6px 14px;color:var(--body);transition:all .2s;cursor:none}
+.achip:hover,.achip:active{background:var(--blue-s);border-color:var(--blue-b);color:var(--blue)}
+.abimgw{position:relative;border-radius:14px;overflow:hidden;background:var(--bg3);border:1px solid var(--border);min-height:220px}
+.abimgw img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.95);transition:filter .3s}
+.abimgw:hover img{filter:brightness(1)}
+.img-overlay{position:absolute;bottom:12px;left:12px;right:12px;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center}
+.ovl{font-size:13px;font-weight:700;color:var(--ink)}
+.ovr{font-size:11px;color:var(--body);text-align:right;line-height:1.5}
+.factg{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.fact{background:#fff;padding:22px 18px;transition:background .2s}
+.fact:hover{background:var(--blue-s)}
+.factn{font-size:30px;font-weight:900;color:var(--ink);letter-spacing:-.04em;line-height:1;margin-bottom:4px}
+.factn .bl{color:var(--blue)}
+.factl{font-size:12px;color:var(--body);font-weight:500;line-height:1.5}
+
+/* PILLARS */
+#pillars{background:var(--ink);padding:0;display:grid;gap:0}
+.pillar{padding:56px 24px;border-bottom:1px solid rgba(255,255,255,.07)}
+.pillar:last-child{border-bottom:none}
+.pillar-num{font-size:10px;font-weight:700;color:var(--blue-mu);letter-spacing:.16em;text-transform:uppercase;margin-bottom:20px;font-family:'Space Mono',monospace}
+.pillar-title{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,34px);font-weight:700;color:white;margin-bottom:16px;line-height:1.2}
+.pillar-body{font-size:15px;line-height:1.75;color:rgba(255,255,255,.45);font-weight:300}
+
+/* INITIATIVES */
+#initiatives{background:#fff;padding:72px 24px}
+.itop{margin-bottom:28px}
+.tab-scroll{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px;margin-top:20px}
+.tab-scroll::-webkit-scrollbar{display:none}
+.itab{font-size:12px;font-weight:700;color:var(--body);background:var(--bg3);border:1.5px solid var(--border);border-radius:20px;padding:8px 16px;cursor:none;transition:all .2s;white-space:nowrap;flex-shrink:0;-webkit-appearance:none;min-height:40px}
+.itab:hover{color:var(--ink)}
+.itab.on{color:#fff;background:var(--blue);border-color:var(--blue)}
+.ipanel{display:none}
+.ipanel.on{display:flex;flex-direction:column;gap:20px;animation:fi .3s ease}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ipimgw{border-radius:14px;overflow:hidden;background:var(--bg3);border:1px solid var(--border);aspect-ratio:16/10;position:relative}
+.ipimgw img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.95);transition:transform .5s,filter .3s}
+.ipimgw:hover img{transform:scale(1.03);filter:brightness(1)}
+.ipnum{position:absolute;top:12px;left:12px;background:var(--blue);border-radius:6px;font-size:10px;font-weight:800;color:#fff;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px}
+.ipfoot{position:absolute;bottom:12px;left:12px;right:12px;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:10px;padding:10px 14px;display:flex;gap:8px;align-items:center}
+.ipfn{font-size:13px;font-weight:700;color:var(--ink);flex:1}
+.ipfs{font-size:11px;color:var(--body)}
+.ipcont{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:24px;display:flex;flex-direction:column}
+.ipcat{font-size:10px;font-weight:700;color:var(--blue);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.ipname{font-family:'Playfair Display',serif;font-size:clamp(20px,4vw,28px);font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:4px;line-height:1.1}
+.ipsub{font-size:12px;color:var(--body);margin-bottom:14px;font-weight:500}
+.ipdesc{font-size:14px;line-height:1.75;color:var(--body);margin-bottom:18px}
+.ipdiv{height:1px;background:var(--border);margin-bottom:14px}
+.iplist{list-style:none;display:flex;flex-direction:column;gap:9px}
+.iplist li{display:flex;gap:10px;font-size:13px;color:var(--body);line-height:1.55;align-items:flex-start}
+.iplist li::before{content:'';width:6px;height:6px;background:var(--blue);border-radius:50%;margin-top:5px;flex-shrink:0}
+.iplist li strong{color:var(--ink);font-weight:600}
+
+/* ONE OF A KIND */
+#unique{background:var(--bg2);padding:80px 24px;border-top:1px solid var(--border)}
+.uniq-head{margin-bottom:40px}
+.uniq-grid{display:grid;grid-template-columns:1fr;gap:16px}
+.ucard{background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:28px 24px;position:relative;overflow:hidden;transition:all .3s}
+.ucard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.ucard:hover{border-color:var(--blue-b);transform:translateY(-3px);box-shadow:0 8px 32px rgba(37,99,235,.1)}
+.ucard:hover::before{transform:scaleX(1)}
+.ucard-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;gap:12px}
+.ucard-icon{font-size:32px;flex-shrink:0}
+.ucard-badge{font-size:10px;font-weight:700;color:var(--blue);background:var(--blue-s);border:1px solid var(--blue-b);border-radius:20px;padding:4px 10px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;flex-shrink:0}
+.ucard-title{font-family:'Playfair Display',serif;font-size:clamp(18px,3vw,22px);font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.2}
+.ucard-desc{font-size:14px;color:var(--body);line-height:1.7}
+.ucard-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.utag{font-size:11px;font-weight:600;color:var(--body);background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 10px}
+
+/* NUMBERS */
+#numbers{padding:0;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#fff}
+.nc{padding:36px 20px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;overflow:hidden;transition:background .25s}
+.nc:nth-child(2n){border-right:none}
+.nc:nth-last-child(-n+2){border-bottom:none}
+.nc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.nc:hover{background:var(--blue-s)}
+.nc:hover::after{transform:scaleX(1)}
+.ncn{font-size:clamp(36px,8vw,64px);font-weight:900;color:var(--ink);letter-spacing:-.04em;line-height:1;margin-bottom:8px}
+.ncn .bl{color:var(--blue)}
+.ncl{font-size:12px;color:var(--body);font-weight:500;line-height:1.6}
+
+/* GALLERY */
+#gallery{padding:0;background:#fff;border-top:1px solid var(--border)}
+.galg{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:180px 180px;gap:2px;background:var(--border)}
+.gi{overflow:hidden;position:relative;background:var(--bg3)}
+.gi img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.88);transition:transform .55s,filter .35s}
+.gi:hover img{transform:scale(1.05);filter:brightness(1)}
+.gitall{grid-row:span 2;grid-column:span 2}
+.gilbl{position:absolute;bottom:12px;left:12px;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:8px;padding:5px 11px;font-size:10px;font-weight:700;color:var(--ink);letter-spacing:.08em;text-transform:uppercase;opacity:0;transform:translateY(5px);transition:all .3s}
+.gi:hover .gilbl{opacity:1;transform:translateY(0)}
+.galfooter{background:var(--bg2);border-top:1px solid var(--border);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.gft{font-size:14px;font-weight:600;color:var(--body)}
+.gft span{color:var(--ink)}
+
+/* CTA */
+#cta{background:var(--blue);padding:80px 24px;text-align:center;position:relative;overflow:hidden;padding-bottom:max(80px,calc(80px + env(safe-area-inset-bottom,0px)))}
+.ctaglow{position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 50%,rgba(255,255,255,.07) 0%,transparent 70%);pointer-events:none}
+.ctasup{font-size:11px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;position:relative;z-index:1}
+.ctah2{font-family:'Playfair Display',serif;font-size:clamp(30px,7vw,70px);font-weight:700;line-height:1.08;letter-spacing:-.02em;color:#fff;max-width:640px;margin:0 auto 16px;position:relative;z-index:1}
+.ctah2 em{font-style:italic;color:rgba(255,255,255,.45)}
+.ctap{font-size:15px;color:rgba(255,255,255,.75);max-width:400px;margin:0 auto 36px;line-height:1.7;position:relative;z-index:1}
+.ctabtns{display:flex;flex-direction:column;gap:10px;position:relative;z-index:1;align-items:center}
+.btnw{font-size:14px;font-weight:700;color:var(--blue);background:#fff;border:none;border-radius:10px;padding:14px 28px;cursor:none;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:8px;-webkit-appearance:none;touch-action:manipulation;min-height:52px;width:100%;max-width:320px;justify-content:center}
+.btnw:hover{background:#EEF2FF}
+.btnwo{font-size:14px;font-weight:700;color:#fff;background:transparent;border:1.5px solid rgba(255,255,255,.4);border-radius:10px;padding:13px 28px;cursor:none;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:8px;-webkit-appearance:none;touch-action:manipulation;min-height:52px;width:100%;max-width:320px;justify-content:center}
+.btnwo:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7)}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:56px 24px max(32px,calc(32px + env(safe-area-inset-bottom,0px)))}
+.fttop{padding-bottom:40px;border-bottom:1px solid var(--border);margin-bottom:28px}
+.flogo{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.fmark{width:28px;height:28px;background:var(--blue);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff}
+.fnm{font-size:13px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.fdesc{font-size:13px;color:var(--body);line-height:1.7;margin-bottom:28px}
+.ftcols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.fcol h5{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.fcol ul{list-style:none}
+.fcol li+li{margin-top:8px}
+.fcol a{font-size:13px;color:var(--body);text-decoration:none;transition:color .2s;display:block;padding:2px 0}
+.fcol a:hover{color:var(--blue)}
+.ftbot{display:flex;flex-direction:column;gap:4px}
+.fcopy,.ftag{font-size:11px;color:var(--muted);font-family:'Space Mono',monospace}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}.d4{transition-delay:.28s}
+
+/* TABLET 640px+ */
+@media(min-width:640px){
+  section{padding:80px 40px}
+  #unique{padding:80px 40px}
+  .ctabtns{flex-direction:row;justify-content:center}
+  .btnw,.btnwo{width:auto;max-width:none}
+  .galg{grid-template-columns:2fr 1fr 1fr;grid-template-rows:200px 200px}
+  .gitall{grid-row:span 2;grid-column:unset}
+  #numbers{grid-template-columns:repeat(4,1fr)}
+  .nc{border-bottom:none}
+  .nc:nth-child(2n){border-right:1px solid var(--border)}
+  .nc:last-child{border-right:none}
+  .uniq-grid{grid-template-columns:1fr 1fr}
+}
+
+/* DESKTOP 1024px+ */
+@media(min-width:1024px){
+  nav{padding:0 56px;height:64px}
+  .nav-links{display:flex}
+  .nav-burger{display:none !important}
+  section{padding:96px 56px}
+  #unique{padding:96px 56px}
+
+  #hero{flex-direction:row;min-height:100vh}
+  .hl{flex:1;padding:100px 56px 80px;max-width:55%}
+  .hh1{font-size:clamp(44px,4.5vw,70px)}
+  .hero-cards-row{
+    display:grid !important;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;
+    gap:10px;overflow:visible;flex:1;padding:80px 28px 40px;
+    background:var(--bg2);border-left:1px solid var(--border);margin:0;
+  }
+  .hcard{width:auto;flex-shrink:unset;border-radius:16px}
+  .hcard:first-child{grid-row:span 2;display:flex;flex-direction:column;justify-content:space-between}
+
+  #about{display:grid;grid-template-columns:1fr 1fr}
+  .abl{padding:96px 56px;border-bottom:none;border-right:1px solid var(--border)}
+  .abr{padding:56px;gap:16px}
+
+  #pillars{grid-template-columns:1fr 1fr}
+  .pillar{padding:72px 56px;border-bottom:none;border-right:1px solid rgba(255,255,255,.07)}
+  .pillar:last-child{border-right:none}
+
+  .ipanel.on{flex-direction:row !important;gap:24px;align-items:start}
+  .ipimgw{flex:1.2;aspect-ratio:4/3}
+  .ipcont{flex:1}
+
+  .uniq-grid{grid-template-columns:repeat(3,1fr)}
+
+  .galg{grid-template-columns:2fr 1fr 1fr;grid-template-rows:280px 280px}
+  .gitall{grid-row:span 2;grid-column:unset}
+  .galfooter{padding:24px 40px}
+
+  #cta{padding:96px 56px}
+
+  footer{padding:64px 56px 36px}
+  .fttop{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:48px;border-bottom:1px solid var(--border);padding-bottom:48px}
+  .fdesc{margin-bottom:0}
+  .ftcols{display:contents}
+  .ftbot{flex-direction:row;justify-content:space-between}
+}
+
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}*{transition:none !important;animation:none !important}}
+</style>
+</head>
+<body>
+<div id="c1"></div><div id="c2"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-mark">U</div>
+    <span class="nav-nm">United Beings Foundation</span>
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#initiatives">Initiatives</a>
+    <a href="#unique">What Makes Us Different</a>
+    <a href="#gallery">Gallery</a>
+  </div>
+  <a href="#cta" class="nav-cta">Get Involved →</a>
+  <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-drawer" id="drawer">
+  <div class="nav-drawer-inner">
+    <a href="#about" class="dl">About UBF</a>
+    <a href="#pillars" class="dl">Mission & Vision</a>
+    <a href="#initiatives" class="dl">Initiatives</a>
+    <a href="#unique" class="dl">What Makes Us Different</a>
+    <a href="#numbers" class="dl">Our Impact</a>
+    <a href="#gallery" class="dl">Gallery</a>
+    <a href="#cta" class="dl nav-drawer-cta">Get Involved →</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hl">
+    <div class="hbadge rv"><span class="bdot"></span>Youth-Led · Section 8 Non-Profit · India</div>
+    <h1 class="hh1 rv d1">The next<br>generation<br>building a <span class="bl">better</span><br><span class="fd">India.</span></h1>
+    <p class="hp rv d2">United Beings Foundation is a youth-led organisation empowering the next generation through STEM education, creative arts, leadership development, and environmental action — bridging opportunity gaps across India.</p>
+    <div class="hbtns rv d3">
+      <a href="#initiatives" class="btn-p">Explore our work →</a>
+      <a href="#cta" class="btn-o">Get involved</a>
+    </div>
+    <div class="hstats rv d4">
+      <div class="hs"><span class="hsn">6<span>+</span></span><span class="hsl">Active programmes</span></div>
+      <div class="hs"><span class="hsn" style="font-size:clamp(12px,2.5vw,18px);letter-spacing:-.01em">Need-<span>based</span></span><span class="hsl">Access for all</span></div>
+      <div class="hs"><span class="hsn">4IR</span><span class="hsl">Ready skills</span></div>
+      <div class="hs"><span class="hsn">∞</span><span class="hsl">Potential unlocked</span></div>
+    </div>
+  </div>
+  <div class="hero-cards-row rv d1" id="heroCards">
+    <div class="hcard">
+      <div class="hcard-icon">🌱</div>
+      <div class="hcard-title">Vriddhagami</div>
+      <div class="hcard-desc">Transforming learning and healing spaces across India for the next generation</div>
+      <div class="hcard-num">Active →</div>
+    </div>
+    <div class="hcard">
+      <div class="hcard-icon">📚</div>
+      <div class="hcard-title">Arivio</div>
+      <div class="hcard-desc">STEAM education through rural learning hubs — accessible to all</div>
+      <div class="hcard-num">5 Hubs</div>
+    </div>
+    <div class="hcard">
+      <div class="hcard-icon">🏛️</div>
+      <div class="hcard-title">InspiraZ</div>
+      <div class="hcard-desc">Campus Leaders Programme igniting youth leadership at scale</div>
+      <div class="hcard-num">Flagship</div>
+    </div>
+    <div class="hcard">
+      <div class="hcard-icon">🌊</div>
+      <div class="hcard-title">BlueSweep</div>
+      <div class="hcard-desc">Youth-driven eco action — coastal cleanup, waste-to-wealth innovation</div>
+      <div class="hcard-num">600+</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ttrack">
+    <div class="titem"><span class="tdot"></span>STEM Education</div>
+    <div class="titem"><span class="tdot"></span>Creative Arts</div>
+    <div class="titem"><span class="tdot"></span>Youth Leadership</div>
+    <div class="titem"><span class="tdot"></span>Environmental Action</div>
+    <div class="titem"><span class="tdot"></span>Rural Outreach</div>
+    <div class="titem"><span class="tdot"></span>Access for All</div>
+    <div class="titem"><span class="tdot"></span>4IR Ready Skills</div>
+    <div class="titem"><span class="tdot"></span>Next Generation</div>
+    <div class="titem"><span class="tdot"></span>Community Impact</div>
+    <div class="titem"><span class="tdot"></span>STEM Education</div>
+    <div class="titem"><span class="tdot"></span>Creative Arts</div>
+    <div class="titem"><span class="tdot"></span>Youth Leadership</div>
+    <div class="titem"><span class="tdot"></span>Environmental Action</div>
+    <div class="titem"><span class="tdot"></span>Rural Outreach</div>
+    <div class="titem"><span class="tdot"></span>Access for All</div>
+    <div class="titem"><span class="tdot"></span>4IR Ready Skills</div>
+    <div class="titem"><span class="tdot"></span>Next Generation</div>
+    <div class="titem"><span class="tdot"></span>Community Impact</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="abl rv">
+    <div class="eye"><div class="eline"></div>Who we are</div>
+    <h2 class="sh">Not just an NGO.<br><em>A movement.</em></h2>
+    <p class="sub" style="margin-top:14px;max-width:440px">United Beings Foundation is a youth-led Section 8 non-profit bridging rural and urban India through STEM education and skill development. By blending community heritage with cutting-edge technologies, we prepare the next generation to be job-ready, entrepreneurial, and purpose-driven.</p>
+    <p class="sub" style="margin-top:12px;max-width:440px">Our learning hubs and creative initiatives provide young learners with inspiring spaces to grow, connect, and access opportunities that shape a brighter future — because opportunity should never be a privilege.</p>
+    <div class="abchips">
+      <span class="achip">STEM Education</span>
+      <span class="achip">Creative Arts</span>
+      <span class="achip">Environment</span>
+      <span class="achip">Leadership</span>
+      <span class="achip">Rural Outreach</span>
+      <span class="achip">Section 8 Non-Profit</span>
+    </div>
+  </div>
+  <div class="abr rv d1">
+    <div class="abimgw">
+      <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=900&q=80" alt="Youth in a UBF learning space">
+      <div class="img-overlay">
+        <span class="ovl">Impact-First · Youth-Led</span>
+        <span class="ovr">Accessible to all<br>who need it most</span>
+      </div>
+    </div>
+    <div class="factg">
+      <div class="fact"><div class="factn"><span class="bl">6</span>+</div><div class="factl">Active initiatives across education, arts & environment</div></div>
+      <div class="fact"><div class="factn">4<span class="bl">IR</span></div><div class="factl">Future-ready skills for the Fourth Industrial Revolution</div></div>
+      <div class="fact"><div class="factn" style="font-size:clamp(18px,3vw,24px);letter-spacing:-.02em;line-height:1.2">Need-<span class="bl">based</span></div><div class="factl">Support for those who need it — no one turned away for lack of means</div></div>
+      <div class="fact"><div class="factn" style="font-size:clamp(18px,3vw,26px);letter-spacing:-.02em;line-height:1.2">Youth-<span class="bl">led</span></div><div class="factl">Section 8 Non-Profit driven by young India</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION / VISION -->
+<section id="pillars">
+  <div class="pillar rv">
+    <div class="pillar-num">01 — Mission</div>
+    <h3 class="pillar-title">Education without barriers. Opportunity without limits.</h3>
+    <p class="pillar-body">We are dedicated to making STEM education accessible to young learners from economically disadvantaged backgrounds — going beyond rural communities to reach every young person excluded from conventional education. Through inclusive, engaging, and hands-on learning experiences, we equip the next generation with essential skills to thrive in the era of the Fourth Industrial Revolution and beyond.</p>
+  </div>
+  <div class="pillar rv d1">
+    <div class="pillar-num">02 — Vision</div>
+    <h3 class="pillar-title">A world where every young person gets a fair shot.</h3>
+    <p class="pillar-body">We envision a world free from bias and economic disparity, where every young person is empowered through quality education, moral grounding, and equal opportunity. By nurturing these values across the next generation, we aim to build a harmonious, inclusive, and globally connected community where no young person's potential is ever left behind.</p>
+  </div>
+</section>
+
+<!-- INITIATIVES -->
+<section id="initiatives">
+  <div class="itop rv">
+    <div class="eye"><div class="eline"></div>What we do</div>
+    <h2 class="sh">Six programmes.<br><em>One purpose.</em></h2>
+    <p class="sub" style="margin-top:12px">Equipping the next generation with the tools, spaces, and opportunities to build the India they deserve — with access ensured for those who need it most.</p>
+  </div>
+  <div style="overflow-x:auto;margin:0 -4px" class="rv d1">
+    <div class="tab-scroll" id="tabs">
+      <button class="itab on" data-i="0">Vriddhagami</button>
+      <button class="itab" data-i="1">Art Den</button>
+      <button class="itab" data-i="2">Destino Arte</button>
+      <button class="itab" data-i="3">Arivio</button>
+      <button class="itab" data-i="4">InspiraZ</button>
+      <button class="itab" data-i="5">BlueSweep</button>
+    </div>
+  </div>
+
+  <div class="ipanel on" data-panel="0">
+    <div class="ipimgw">
+      <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=900&q=80" alt="Vriddhagami">
+      <div class="ipnum">01</div>
+      <div class="ipfoot"><span class="ipfn">Vriddhagami</span><span class="ipfs">Transforming spaces for the next generation</span></div>
+    </div>
+    <div class="ipcont">
+      <div class="ipcat">Growth · Future · Transformation</div>
+      <div class="ipname">Vriddhagami</div>
+      <div class="ipsub">Sanskrit: Vriddha (growth) + Agami (future)</div>
+      <p class="ipdesc">Vriddhagami transforms learning and healing environments in government schools, hospitals, and orphanages — creating vibrant, youth-centred spaces that nurture focus, creativity, and well-being. A journey of transformation where the next generation steps into a brighter future surrounded by inspiration and possibility.</p>
+      <div class="ipdiv"></div>
+      <ul class="iplist">
+        <li><span><strong>Classrooms revitalised</strong> with creative designs that spark curiosity and focus in young learners</span></li>
+        <li><span><strong>Paediatric wards brightened</strong> to provide comfort, stimulation, and healing energy for young patients</span></li>
+        <li><span><strong>Orphanages supported</strong> in building nurturing, safe, and imaginative spaces for youth</span></li>
+        <li><span>A network of passionate <strong>artists, volunteers, and creative professionals</strong> connected to the cause</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ipanel" data-panel="1">
+    <div class="ipimgw">
+      <img src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=900&q=80" alt="Art Den">
+      <div class="ipnum">02</div>
+      <div class="ipfoot"><span class="ipfn">Art Den</span><span class="ipfs">Under Vriddhagami · Classes 6–9</span></div>
+    </div>
+    <div class="ipcont">
+      <div class="ipcat">Creative Expression · Under Vriddhagami</div>
+      <div class="ipname">Art Den</div>
+      <div class="ipsub">15-day immersive art programme · Classes 6–9</div>
+      <p class="ipdesc">A 15-day immersive art programme for young learners from economically challenged backgrounds. We nurture artistic talent, encourage self-expression, and open doors to future creative opportunities — because every young person deserves access to the creative economy, regardless of background.</p>
+      <div class="ipdiv"></div>
+      <ul class="iplist">
+        <li><span><strong>Hands-on workshops</strong> in painting, drawing, and sculpture led by working artists</span></li>
+        <li><span><strong>Ongoing mentorship</strong> and updates on competitions, scholarships, and events</span></li>
+        <li><span><strong>Art Hubs</strong> — accessible creative spaces established in major cities for continued practice</span></li>
+        <li><span><strong>Community partnerships</strong> with schools and local groups to reach youth most in need</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ipanel" data-panel="2">
+    <div class="ipimgw">
+      <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=900&q=80" alt="Destino Arte">
+      <div class="ipnum">03</div>
+      <div class="ipfoot"><span class="ipfn">Destino Arte</span><span class="ipfs">Under Vriddhagami · Wall Art · Remote Schools</span></div>
+    </div>
+    <div class="ipcont">
+      <div class="ipcat">Wall Art · Remote Outreach · Cultural Identity</div>
+      <div class="ipname">Destino Arte</div>
+      <div class="ipsub">Vibrant wall art for remote schools & institutions</div>
+      <p class="ipdesc">Bringing vibrant wall art to remote schools, orphanages, and institutions — transforming dull walls into inspiring canvases that spark imagination, reflect local culture, and make every young person feel that their environment belongs to them. Destino Arte reaches where others don't.</p>
+      <div class="ipdiv"></div>
+      <ul class="iplist">
+        <li><span><strong>Creative Spaces</strong> — artistic walls that tell stories of culture, aspiration, and pride</span></li>
+        <li><span><strong>Remote Outreach</strong> — bringing colour to communities that receive the least investment</span></li>
+        <li><span><strong>Collaboration</strong> — artists, volunteers, and communities as co-creators of their own spaces</span></li>
+        <li><span><strong>Cultural Connection</strong> — every design reflects local heritage, languages, and community identity</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ipanel" data-panel="3">
+    <div class="ipimgw">
+      <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=900&q=80" alt="Arivio">
+      <div class="ipnum">04</div>
+      <div class="ipfoot"><span class="ipfn">Arivio</span><span class="ipfs">Knowledge in Action · STEAM · Rural Hubs</span></div>
+    </div>
+    <div class="ipcont">
+      <div class="ipcat">Knowledge in Action · STEAM · Rural Learning Hubs</div>
+      <div class="ipname">Arivio</div>
+      <div class="ipsub">Tamil: Arivu (knowledge) — inclusive STEAM education</div>
+      <p class="ipdesc">Rooted in the Right to Education, Arivio delivers inclusive, high-quality STEAM learning to every young learner — without bias or barriers. Through hands-on, real-world experiences in rural learning hubs, we equip the next generation with ethical values, curiosity, and future-ready skills for the Fourth Industrial Revolution.</p>
+      <div class="ipdiv"></div>
+      <ul class="iplist">
+        <li><span><strong>Equitable STEAM</strong> — high-quality education without bias or barriers, accessible to all learners</span></li>
+        <li><span><strong>Hands-on learning</strong> — real-world, experiential education in science, technology, engineering, arts & maths</span></li>
+        <li><span><strong>Rural Learning Hubs</strong> — bringing STEAM resources and teaching to underserved communities</span></li>
+        <li><span><strong>4IR Skills</strong> — preparing the next generation to thrive in the modern world and beyond</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ipanel" data-panel="4">
+    <div class="ipimgw">
+      <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=900&q=80" alt="InspiraZ">
+      <div class="ipnum">05</div>
+      <div class="ipfoot"><span class="ipfn">InspiraZ</span><span class="ipfs">UBF Flagship · Campus Leaders Programme</span></div>
+    </div>
+    <div class="ipcont">
+      <div class="ipcat">Campus Leaders · UBF Flagship Programme</div>
+      <div class="ipname">InspiraZ</div>
+      <div class="ipsub">Igniting leadership in today's youth changemakers</div>
+      <p class="ipdesc">UBF's flagship Campus Leaders Programme — crafted to ignite the spark of leadership in today's youth. Partnering with academic institutions, InspiraZ designs sustainable outreach initiatives and dynamic engagement programmes that nurture creativity, collaboration, and purpose-driven community impact.</p>
+      <div class="ipdiv"></div>
+      <ul class="iplist">
+        <li><span><strong>Leadership Development</strong> — cultivating civic responsibility and leadership skills in young people</span></li>
+        <li><span><strong>Sustainable Initiatives</strong> — designing long-term outreach programmes that address real community needs</span></li>
+        <li><span><strong>Innovative Problem-Solving</strong> — encouraging youth to create solutions for local and global challenges</span></li>
+        <li><span><strong>Community Impact</strong> — empowering young leaders to drive meaningful, measurable change</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ipanel" data-panel="5">
+    <div class="ipimgw">
+      <img src="https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?w=900&q=80" alt="BlueSweep">
+      <div class="ipnum">06</div>
+      <div class="ipfoot"><span class="ipfn">BlueSweep</span><span class="ipfs">Eco-Driven Youth Initiative · Environmental Action</span></div>
+    </div>
+    <div class="ipcont">
+      <div class="ipcat">Eco Action · Coastal Cleanup · Waste-to-Wealth</div>
+      <div class="ipname">BlueSweep</div>
+      <div class="ipsub">Youth-led environmental action at scale</div>
+      <p class="ipdesc">BlueSweep is an eco-driven youth initiative inspiring the next generation to take the lead in plastic cleanup and environmental action. By mobilising young people from schools and colleges, BlueSweep protects oceans, marine life, and land animals — while unlocking waste-to-wealth innovation for youth entrepreneurs.</p>
+      <div class="ipdiv"></div>
+      <ul class="iplist">
+        <li><span><strong>Youth Engagement</strong> — mobilising school and college communities for city and coastal cleanup drives</span></li>
+        <li><span><strong>Waste to Wealth</strong> — educating young participants on turning waste into business opportunities</span></li>
+        <li><span><strong>Ocean & Wildlife Safety</strong> — reducing plastic threats to marine life, land animals, and ecosystems</span></li>
+        <li><span><strong>Global Partnerships</strong> — collaborating with national and international organisations for wider impact</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ONE OF A KIND -->
+<section id="unique">
+  <div class="uniq-head rv">
+    <div class="eye"><div class="eline"></div>What makes us different</div>
+    <h2 class="sh">One-of-a-kind<br><em>programmes & activities.</em></h2>
+    <p class="sub" style="margin-top:12px;max-width:560px">Every UBF initiative is built from scratch to address a gap no one else is filling. These aren't replicated models — they are entirely original approaches, designed by young people for the next generation.</p>
+  </div>
+  <div class="uniq-grid rv d1">
+
+    <div class="ucard">
+      <div class="ucard-top">
+        <div class="ucard-icon">🏫</div>
+        <span class="ucard-badge">First in India</span>
+      </div>
+      <div class="ucard-title">Healing Spaces Through Art</div>
+      <p class="ucard-desc">UBF is among the first youth-led organisations in India to systematically transform paediatric hospital wards and government school classrooms through volunteer-driven wall art and creative redesign — making healing and learning environments genuinely inspiring for the next generation.</p>
+      <div class="ucard-tags">
+        <span class="utag">Vriddhagami</span>
+        <span class="utag">Destino Arte</span>
+        <span class="utag">Art Den</span>
+      </div>
+    </div>
+
+    <div class="ucard">
+      <div class="ucard-top">
+        <div class="ucard-icon">🌾</div>
+        <span class="ucard-badge">Rural-First Model</span>
+      </div>
+      <div class="ucard-title">STEAM Education in India's Last Mile</div>
+      <p class="ucard-desc">Arivio's rural learning hub model takes STEAM education directly into communities that are completely bypassed by urban-focused edtech platforms — no app required, no internet dependency, no barriers to entry. Designed to work in India's lowest-connectivity environments and built around local languages and contexts.</p>
+      <div class="ucard-tags">
+        <span class="utag">Arivio</span>
+        <span class="utag">4IR Ready</span>
+        <span class="utag">Rural Outreach</span>
+      </div>
+    </div>
+
+    <div class="ucard">
+      <div class="ucard-top">
+        <div class="ucard-icon">♻️</div>
+        <span class="ucard-badge">Youth-Led Eco Model</span>
+      </div>
+      <div class="ucard-title">Waste-to-Wealth Environmental Education</div>
+      <p class="ucard-desc">BlueSweep doesn't just clean coastlines — it teaches young participants how plastic waste can become a business opportunity. This waste-to-wealth education model, embedded within a civic cleanup drive, is a uniquely UBF approach to turning environmental action into economic thinking for the next generation.</p>
+      <div class="ucard-tags">
+        <span class="utag">BlueSweep</span>
+        <span class="utag">Eco Action</span>
+        <span class="utag">Youth Enterprise</span>
+      </div>
+    </div>
+
+    <div class="ucard">
+      <div class="ucard-top">
+        <div class="ucard-icon">🎯</div>
+        <span class="ucard-badge">Campus-to-Community</span>
+      </div>
+      <div class="ucard-title">Campus Leaders Driving Real Community Impact</div>
+      <p class="ucard-desc">InspiraZ is not a leadership workshop or a certificate programme — it is a structured system for turning campus youth into active community changemakers. Partnering directly with academic institutions, it creates measurable, sustained community outcomes while building the next generation of civic leaders.</p>
+      <div class="ucard-tags">
+        <span class="utag">InspiraZ</span>
+        <span class="utag">Leadership</span>
+        <span class="utag">Community Impact</span>
+      </div>
+    </div>
+
+    <div class="ucard">
+      <div class="ucard-top">
+        <div class="ucard-icon">🎨</div>
+        <span class="ucard-badge">Need-Based Access</span>
+      </div>
+      <div class="ucard-title">A Creative Economy On-Ramp for Underserved Youth</div>
+      <p class="ucard-desc">Art Den is not an after-school activity — it is a deliberate 15-day immersive entry point into the creative economy for young people from economically challenged backgrounds who have no other pathway into arts education. With need-based access ensuring no one is turned away, the combination of hands-on training, city-wide Art Hubs, and ongoing mentorship makes it genuinely one of a kind.</p>
+      <div class="ucard-tags">
+        <span class="utag">Art Den</span>
+        <span class="utag">Creative Economy</span>
+        <span class="utag">Need-Based Access</span>
+      </div>
+    </div>
+
+    <div class="ucard">
+      <div class="ucard-top">
+        <div class="ucard-icon">🌍</div>
+        <span class="ucard-badge">Citywide Scale</span>
+      </div>
+      <div class="ucard-title">UBF Green Chennai — India's Largest Youth Plantation Drive</div>
+      <p class="ucard-desc">Targeting 1–3 lakh native saplings planted in a single day across 20–25 simultaneous sites, with a Guinness World Records attempt, GCC endorsement, and 3,000 volunteers — organised entirely by a youth-led non-profit. There is no comparable event in Tamil Nadu's history, and none organised at this scale by a Section 8 NGO in India.</p>
+      <div class="ucard-tags">
+        <span class="utag">UBF Green Chennai</span>
+        <span class="utag">GWR Attempt</span>
+        <span class="utag">Environmental Action</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<div id="numbers">
+  <div class="nc rv"><div class="ncn"><span class="bl">6</span>+</div><div class="ncl">Active programmes across education, arts & environment</div></div>
+  <div class="nc rv d1"><div class="ncn">4<span class="bl">IR</span></div><div class="ncl">Future-ready skills for the Fourth Industrial Revolution</div></div>
+  <div class="nc rv d2"><div class="ncn" style="font-size:clamp(22px,4vw,48px);letter-spacing:-.02em;line-height:1.15">Need-<span class="bl">based</span></div><div class="ncl">Support for those who need it — no one turned away for lack of means</div></div>
+  <div class="nc rv d3"><div class="ncn" style="font-size:clamp(28px,5vw,52px);letter-spacing:-.02em;line-height:1.15">Youth<span class="bl">-led</span></div><div class="ncl">Section 8 Non-Profit driven by young India</div></div>
+</div>
+
+<!-- GALLERY -->
+<div id="gallery">
+  <div class="galg">
+    <div class="gi gitall rv"><img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=900&q=80" alt="Youth at work"><div class="gilbl">Next generation at work</div></div>
+    <div class="gi rv d1"><img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=75" alt="STEAM education"><div class="gilbl">STEAM education</div></div>
+    <div class="gi rv d2"><img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=600&q=75" alt="Community drives"><div class="gilbl">Community drives</div></div>
+    <div class="gi rv d1"><img src="https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?w=600&q=75" alt="BlueSweep"><div class="gilbl">BlueSweep in action</div></div>
+    <div class="gi rv d2"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&q=75" alt="InspiraZ leaders"><div class="gilbl">InspiraZ leaders</div></div>
+  </div>
+  <div class="galfooter">
+    <span class="gft">Our work <span>across India →</span></span>
+    <a href="#cta" class="btn-o" style="font-size:13px;padding:10px 20px;cursor:pointer">Partner with us →</a>
+  </div>
+</div>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="ctaglow"></div>
+  <p class="ctasup rv">Be part of the change</p>
+  <h2 class="ctah2 rv d1">The next generation<br>is building <em>the future.</em><br>Support them.</h2>
+  <p class="ctap rv d2">Partner, volunteer, or collaborate with UBF. Every connection creates lasting opportunity for the next generation of young people across India.</p>
+  <div class="ctabtns rv d3">
+    <a href="mailto:contact@ubfngo.org" class="btnw">Partner with us →</a>
+    <a href="#initiatives" class="btnwo">Explore all initiatives</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fttop">
+    <div>
+      <div class="flogo"><div class="fmark">U</div><span class="fnm">United Beings Foundation</span></div>
+      <p class="fdesc">A youth-led Section 8 non-profit dedicated to bridging India's opportunity gap through STEM education, creative arts, leadership development, and environmental action — with need-based access ensuring no young person is ever turned away.</p>
+    </div>
+    <div class="fcol"><h5>Initiatives</h5><ul>
+      <li><a href="#initiatives">Vriddhagami</a></li>
+      <li><a href="#initiatives">Art Den</a></li>
+      <li><a href="#initiatives">Destino Arte</a></li>
+      <li><a href="#initiatives">Arivio</a></li>
+      <li><a href="#initiatives">InspiraZ</a></li>
+      <li><a href="#initiatives">BlueSweep</a></li>
+    </ul></div>
+    <div class="fcol"><h5>Organisation</h5><ul>
+      <li><a href="#about">About UBF</a></li>
+      <li><a href="#pillars">Mission & Vision</a></li>
+      <li><a href="#unique">What Makes Us Different</a></li>
+      <li><a href="#numbers">Our Impact</a></li>
+      <li><a href="#">Our Team</a></li>
+      <li><a href="#">Annual Report</a></li>
+    </ul></div>
+    <div class="fcol"><h5>Get Involved</h5><ul>
+      <li><a href="#cta">Partner with Us</a></li>
+      <li><a href="#">Volunteer</a></li>
+      <li><a href="#">Donate</a></li>
+      <li><a href="#">CSR Programmes</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">ubfngo.org</a></li>
+    </ul></div>
+  </div>
+  <div class="ftbot">
+    <span class="fcopy">© 2025 United Beings Foundation · Section 8 Non-Profit · India · All rights reserved.</span>
+    <span class="ftag">Every young person. Every opportunity. Every future.</span>
+  </div>
+</footer>
+
+<script>
+const c1=document.getElementById('c1'),c2=document.getElementById('c2');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c1.style.left=mx+'px';c1.style.top=my+'px'});
+(function t(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;c2.style.left=rx+'px';c2.style.top=ry+'px';requestAnimationFrame(t)})();
+
+const burger=document.getElementById('burger'),drawer=document.getElementById('drawer');
+burger.addEventListener('click',()=>{
+  const o=drawer.classList.toggle('open');
+  burger.classList.toggle('open',o);
+  burger.setAttribute('aria-expanded',o);
+});
+document.querySelectorAll('.dl').forEach(a=>a.addEventListener('click',()=>{
+  drawer.classList.remove('open');burger.classList.remove('open');burger.setAttribute('aria-expanded','false');
+}));
+
+function layout(){
+  const m=window.innerWidth<1024;
+  burger.style.display=m?'flex':'none';
+  const hc=document.getElementById('heroCards');
+  if(!m){
+    hc.style.cssText='display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;overflow:visible;flex:1;padding:80px 28px 40px;background:var(--bg2);border-left:1px solid var(--border);margin:0';
+    hc.querySelector('.hcard').style.gridRow='span 2';
+  } else {
+    hc.style.cssText='display:flex;gap:12px;overflow-x:auto;padding:0 24px 32px;-webkit-overflow-scrolling:touch;scrollbar-width:none';
+    hc.querySelector('.hcard').style.gridRow='';
+  }
+}
+layout();window.addEventListener('resize',layout);
+
+document.getElementById('tabs').addEventListener('click',e=>{
+  const b=e.target.closest('.itab');if(!b)return;
+  const i=b.dataset.i;
+  document.querySelectorAll('.itab').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.ipanel').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  document.querySelector('.ipanel[data-panel="'+i+'"]').classList.add('on');
+});
+
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target)}})},{threshold:.08,rootMargin:'0px 0px -32px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
